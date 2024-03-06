@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 100px; /* Increased margin-top for better spacing */
     text-align: center;
 }
 
@@ -31,10 +31,6 @@ body {
 }
 
 /* Specific Page Styles */
-.container {
-    padding-top: 100px;
-}
-
 .container h1 {
     margin-bottom: 20px;
 }
@@ -45,16 +41,17 @@ body {
 
 .project-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center; /* Center-align project cards */
 }
 
 .project {
-    width: calc(33.33% - 40px);
+    width: 90%; /* Adjusted width to fit mobile screens */
+    max-width: 300px; /* Added max-width for better responsiveness */
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px;
+    margin: 20px auto; /* Center project cards horizontally */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }

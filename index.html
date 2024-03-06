@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
@@ -31,45 +31,68 @@
     </header>
 
     <div class="container">
-        <h1 id = "pageTitle"></h1>
-        <p>TThis first page is where I will add updates to projects currently working on!</p>
+        <h1 id="pageTitle"></h1>
+        
+            
+            <p class="lead">This first page is where I will add updates to projects currently working on!</p>
+        
+    </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="project-images/CS50X.png" class="card-img-top" alt="Project 1">
+                    <div class="card-body">
+                        <h5 class="card-title">CS50X</h5>
+                        <p class="card-text">Currently completing CS50X very close to completion.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="project-images/Isor.png" class="card-img-top" alt="Project 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Isorld</h5>
+                        <p class="card-text">Creating a 2D top-down roguelike game</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="project-images/Udar.png" class="card-img-top" alt="Project 3">
+                    <div class="card-body">
+                        <h5 class="card-title">JS API's</h5>
+                        <p class="card-text">Currently learning more about JS REST API's</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="project-container">
-        <div class="project" >
-            <img src="" alt="Project 1">
-            <h2>CS50X</h2>
-            <p>Currently completing CS50X very close to completion.</p>
-        </div>
-        <div class="project">
-            <img src="" alt="Project 2">
-            <h2>Isorld</h2>
-            <p>Creating a 2D top-down roguelike game</p>
-        </div>
-        <div class="project">
-            <img  alt="Project 3">
-            <h2>JS API's</h2>
-            <p>Currently learning more about JS REST API's</p>
-        </div>
-    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-
-    <script src="script.js"></script>
     <script>
-        const pageTitle = document.getElementById('pageTitle');
-        const titleText = "Welcome to Muhiedin's Project Website!";
-        let index = 0;
+        // Ensure the DOM is loaded before executing this script
+        document.addEventListener("DOMContentLoaded", function() {
+            const pageTitle = document.getElementById('pageTitle');
+            const titleText = "Welcome to Muhiedin's Project Website!";
+            let index = 0;
 
-        function typeTitle() {
-            if (index < titleText.length) {
-                pageTitle.textContent += titleText.charAt(index);
-                index++;
-                setTimeout(typeTitle, 100);
+            function typeTitle() {
+                if (index < titleText.length) {
+                    pageTitle.textContent += titleText.charAt(index);
+                    index++;
+                    setTimeout(typeTitle, 100);
+                }
             }
-        }
 
-        typeTitle();
+            typeTitle();
+        });
     </script>
-
 </body>
 </html>
