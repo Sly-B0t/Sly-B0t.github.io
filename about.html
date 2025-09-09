@@ -1,58 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'VT323', monospace;
+      color: #e0e0e0;
+      background: #000;
+      overflow-x: hidden;
+    }
+    canvas#stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      border-bottom: 2px solid #33ff33;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #33ff33;
+      text-shadow: 0 0 5px #33ff33;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #33ff33;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: rgba(20, 20, 20, 0.85);
+      border: 2px solid #33ff33;
+      border-radius: 8px;
+    }
+    h2 {
+      color: #33ff33;
+      font-size: 18px;
+      border-bottom: 1px solid #33ff33;
+      padding-bottom: 4px;
+      margin-bottom: 1rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #33ff33;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 12px;
+      border-top: 2px solid #33ff33;
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Home</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="projects.html">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <canvas id="stars"></canvas>
+  <header>
+    <a href="index.html"><h1>MUHIEDIN.ME</h1></a>
+    <nav>
+      <a href="about.html">About Me</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-    <div class="container">
-        <h1>About Me</h1>
-        <p>
-            I'm Muhiedin Omar, a passionate developer with a love for creating innovative solutions. 
-            At a young age, I started my journey into programming and game development. 
-            Now, with years of experience under my belt, I continue to explore new technologies 
-            and push the boundaries of what's possible.
-        </p>
-        <p>
-            My interests span across various domains, including web development, game development, 
-            and artificial intelligence. I believe in continuous learning and strive to enhance 
-            my skills every day.
-        </p>
-        <p>
-            Outside of coding, you can find me exploring the outdoors, playing video games, 
-            or experimenting with new recipes in the kitchen. Feel free to connect with me 
-            through the provided contact information. I'm always open to collaborations 
-            and new opportunities.
-        </p>
+  <div class="container">
+    <h2>ABOUT ME</h2>
+    <div class="cards">
+      <div class="card">My Favourite Game is Majora's Mask. I love it so much I recreated the mask In the game In real life by carving a block of wood!</div>
+      <div class="card">My Favourite Movie is Bullet Train!</div>
+      <div class="card">I really enjoy programming.</div>
+      <div class="card">I go to the university of Toronto for Electrical Engineering. </div>
+      <div class="card">I was originally in Mineral engineeing then transfered to Civil Engineering then transfered to Electrical Engineering all in the same summer.</div>
     </div>
-    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <footer>
+    <p>&copy; 2025 Muhiedin Omar</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [], shootingStars = [];
+    function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+    function initStars(){ for(let i=0;i<200;i++){ stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speed:0.05+Math.random()*0.5}); } }
+    function createShootingStar(){ shootingStars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height/2,length:200,speed:10,size:2,opacity:1}); }
+    function drawShootingStars(){ for(let i=0;i<shootingStars.length;i++){ const s=shootingStars[i]; ctx.beginPath(); const g=ctx.createLinearGradient(s.x,s.y,s.x-s.length,s.y+s.length); g.addColorStop(0,`rgba(255,255,255,${s.opacity})`); g.addColorStop(1,'rgba(255,255,255,0)'); ctx.strokeStyle=g; ctx.lineWidth=s.size; ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-s.length,s.y+s.length); ctx.stroke(); s.x+=-s.speed; s.y+=s.speed; s.opacity-=0.01; if(s.opacity<=0){shootingStars.splice(i,1);i--;}} }
+    function animateStars(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='white'; for(let star of stars){ ctx.beginPath(); ctx.arc(star.x,star.y,star.size,0,Math.PI*2); ctx.fill(); star.y+=star.speed; if(star.y>canvas.height){ star.y=0; star.x=Math.random()*canvas.width; } } if(Math.random()<0.005){createShootingStar();} drawShootingStars(); requestAnimationFrame(animateStars);} initStars(); animateStars();
+  </script>
 </body>
 </html>

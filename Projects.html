@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Projects</title>
+  <title>Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -12,7 +13,13 @@
       background: #000;
       overflow-x: hidden;
     }
+    a:link {
+      color: rgb(60, 255, 0); 
+    }
 
+    a:visited {
+      color: rgb(8, 161, 33); 
+    }
     canvas#stars {
       position: fixed;
       top: 0;
@@ -20,9 +27,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      display: block;
     }
-
     header {
       background: rgba(0, 0, 0, 0.8);
       border-bottom: 2px solid #33ff33;
@@ -30,57 +35,46 @@
       text-align: center;
     }
     header h1 {
-      font-family: 'VT323', monospace;
-      color: #33ff33;
       margin: 0;
       font-size: 26px;
+      color: #33ff33;
       text-shadow: 0 0 5px #33ff33;
-    }
-    nav {
-      margin-top: 0.5rem;
     }
     nav a {
       color: #fff;
-      text-decoration: none;
       margin: 0 10px;
+      text-decoration: none;
       font-size: 14px;
-      transition: color 0.3s;
-      font-family: inherit;
     }
     nav a:hover {
       color: #33ff33;
     }
-
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       padding: 1rem;
       background: rgba(20, 20, 20, 0.85);
       border: 2px solid #33ff33;
       border-radius: 8px;
-      box-shadow: 0 0 15px #000;
     }
     h2 {
-      font-family: 'VT323', monospace;
-      font-size: 16px;
       color: #33ff33;
+      font-size: 18px;
       border-bottom: 1px solid #33ff33;
-      padding-bottom: 5px;
+      padding-bottom: 4px;
       margin-bottom: 1rem;
     }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
     }
     .project-card {
-      background: #1a1a1a;
+      background: #111;
       border: 1px solid #333;
-      padding: 0.5rem;
       border-radius: 6px;
+      padding: 1rem;
       transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
     }
     .project-card:hover {
       transform: scale(1.05);
@@ -93,70 +87,53 @@
       object-fit: cover;
       border-radius: 4px;
       margin-bottom: 0.5rem;
-      filter: grayscale(100%);
     }
     .project-info h3 {
       margin: 0;
-      font-size: 14px;
+      font-size: 16px;
       color: #fff;
-      font-family: inherit;
     }
     .project-hover {
-      font-size: 12px;
+      font-size: 13px;
       color: #ccc;
       margin-top: 0.5rem;
-      font-family: inherit;
     }
-
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 12px;
-      background: rgba(0, 0, 0, 0.8);
       border-top: 2px solid #33ff33;
-      color: #666;
-      font-family: inherit;
+      background: rgba(0,0,0,0.8);
     }
-    a {
-      color: #33ff33;
-    }
+
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
   <canvas id="stars"></canvas>
-
   <header>
     <a href="index.html"><h1>MUHIEDIN.ME</h1></a>
-    
     <nav>
-      <a href="about.html">About Me</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <div class="container" id="home">
-    <h2>ABOUT ME</h2>
-    <p>Hi, I’m Muhiedin! I love building things — from code to hardware to art. Here’s a snapshot of my journey so far.</p>
-  </div>
-
-  <div class="container" id="projects">
+  <div class="container">
     <h2>PROJECTS & ACCOMPLISHMENTS</h2>
     <div class="projects-grid">
-      <!-- All project cards already here -->
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Drone">
+        <img src="/Images/Drone.jpg" alt="Drone">
         <div class="project-info"><h3>Custom Drone with ESP32</h3></div>
         <div class="project-hover">Currently 3D printing and programming a drone using ESP32 and motor drivers.</div>
       </div>
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Majora's Mask">
+        <img src="/Images/Majoras Mask.jpeg" alt="Majora's Mask">
         <div class="project-info"><h3>Majora's Mask Sculpture</h3></div>
         <div class="project-hover">Manually sculpting, gluing, painting, and sanding wood to create Majora’s Mask from Zelda.</div>
       </div>
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="APS112">
+        <img src="/Images/Aps112.png" alt="APS112">
         <div class="project-info"><h3>APS112 Design Project</h3></div>
         <div class="project-hover">Collaborated with UofT’s Engineering Library to design a pop-up peer support space, focusing on wellness and accessibility.</div>
       </div>
@@ -166,7 +143,7 @@
         <div class="project-hover">Placed 10th in UofT’s C programming contest and received a certificate.</div>
       </div>
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="CS50x">
+        <img src="/Images/CS50X.png" alt="CS50x">
         <div class="project-info"><h3>CS50x Certificate</h3></div>
         <div class="project-hover">Completed Harvard’s CS50x, covering C, Python, SQL, and web development.</div>
       </div>
@@ -176,21 +153,17 @@
         <div class="project-hover">Built multiple personal projects in Unity from a young age.</div>
       </div>
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Celestial Simulator">
-        <div class="project-info"><h3>Celestial Body Simulator</h3></div>
+        <img src="/Images/CelestialBodySim.png" alt="Celestial Simulator">
+        <div class="project-info"><h3>
+          <a href="https://sly01bot.itch.io/celestial-body-sim">Celestial Body Simulator</a></h3></div>
         <div class="project-hover">Created a physics-based celestial body simulator in Unity.</div>
       </div>
       <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Minecraft API">
+        <img src="Images/Udar.png" alt="Minecraft API">
         <div class="project-info"><h3>Minecraft Server REST API</h3></div>
         <div class="project-hover">Built a REST API that integrates with Discord to show live Minecraft server status.</div>
       </div>
     </div>
-  </div>
-
-  <div class="container" id="contact">
-    <h2>CONTACT</h2>
-    <p>Email me at: <a href="mailto:muhiedin.omar@mail.utoronto.ca">muhiedin.omar@mail.utoronto.ca</a></p>
   </div>
 
   <footer>
@@ -200,85 +173,13 @@
   <script>
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
-    let stars = [];
-    let shootingStars = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < 200; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2,
-          speed: 0.05 + Math.random() * 0.5
-        });
-      }
-    }
-
-    function createShootingStar() {
-      shootingStars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height / 2,
-        length: 200,
-        speed: 10,
-        size: 2,
-        opacity: 1
-      });
-    }
-
-    function drawShootingStars() {
-      for (let i = 0; i < shootingStars.length; i++) {
-        const star = shootingStars[i];
-        ctx.beginPath();
-        const grad = ctx.createLinearGradient(star.x, star.y, star.x - star.length, star.y + star.length);
-        grad.addColorStop(0, `rgba(255,255,255,${star.opacity})`);
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = star.size;
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.length, star.y + star.length);
-        ctx.stroke();
-        star.x += -star.speed;
-        star.y += star.speed;
-        star.opacity -= 0.01;
-        if (star.opacity <= 0) {
-          shootingStars.splice(i, 1);
-          i--;
-        }
-      }
-    }
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'white';
-      for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-      }
-
-      if (Math.random() < 0.005) {
-        createShootingStar();
-      }
-
-      drawShootingStars();
-      requestAnimationFrame(animateStars);
-    }
-
-    initStars();
-    animateStars();
+    let stars = [], shootingStars = [];
+    function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+    function initStars(){ for(let i=0;i<200;i++){ stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speed:0.05+Math.random()*0.5}); } }
+    function createShootingStar(){ shootingStars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height/2,length:200,speed:10,size:2,opacity:1}); }
+    function drawShootingStars(){ for(let i=0;i<shootingStars.length;i++){ const s=shootingStars[i]; ctx.beginPath(); const g=ctx.createLinearGradient(s.x,s.y,s.x-s.length,s.y+s.length); g.addColorStop(0,`rgba(255,255,255,${s.opacity})`); g.addColorStop(1,'rgba(255,255,255,0)'); ctx.strokeStyle=g; ctx.lineWidth=s.size; ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-s.length,s.y+s.length); ctx.stroke(); s.x+=-s.speed; s.y+=s.speed; s.opacity-=0.01; if(s.opacity<=0){shootingStars.splice(i,1);i--;}} }
+    function animateStars(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='white'; for(let star of stars){ ctx.beginPath(); ctx.arc(star.x,star.y,star.size,0,Math.PI*2); ctx.fill(); star.y+=star.speed; if(star.y>canvas.height){ star.y=0; star.x=Math.random()*canvas.width; } } if(Math.random()<0.005){createShootingStar();} drawShootingStars(); requestAnimationFrame(animateStars);} initStars(); animateStars();
   </script>
 </body>
 </html>
