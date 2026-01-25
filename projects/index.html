@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me</title>
+  <title>Projects</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,6 +12,13 @@
       color: #e0e0e0;
       background: #000;
       overflow-x: hidden;
+    }
+    a:link {
+      color: rgb(60, 255, 0); 
+    }
+
+    a:visited {
+      color: rgb(8, 161, 33); 
     }
     canvas#stars {
       position: fixed;
@@ -43,7 +50,7 @@
       color: #33ff33;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       padding: 1rem;
       background: rgba(20, 20, 20, 0.85);
@@ -57,28 +64,39 @@
       padding-bottom: 4px;
       margin-bottom: 1rem;
     }
-    .cards {
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
     }
-    .card {
+    .project-card {
       background: #111;
       border: 1px solid #333;
       border-radius: 6px;
       padding: 1rem;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .card:hover {
+    .project-card:hover {
       transform: scale(1.05);
       box-shadow: 0 0 10px #33ff33;
+      z-index: 2;
     }
-    .card img {
+    .project-card img {
       width: 100%;
       height: 150px;
       object-fit: cover;
       border-radius: 4px;
       margin-bottom: 0.5rem;
+    }
+    .project-info h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+    }
+    .project-hover {
+      font-size: 13px;
+      color: #ccc;
+      margin-top: 0.5rem;
     }
     footer {
       text-align: center;
@@ -87,35 +105,78 @@
       border-top: 2px solid #33ff33;
       background: rgba(0,0,0,0.8);
     }
+
   </style>
 </head>
 <body>
   <body>
   <div style="display: flex; align-items: center; gap: 15px; background-color: rgba(255, 255, 255, 0); padding: 15px 25px; border-radius: 8px; position: absolute;">
     <a href="https://WebRing.skule.ca/#https://muhiedin.me?nav=prev" style="color: #e0e0e0; text-decoration: none; font-size: 1.5rem;">←</a>
-<a href="https://WebRing.skule.ca/#https://muhiedin.me" target="_blank">
+<a href="https://WebRing.skule.ca/#https://muhiedin.me target="_blank">
 <img src="/icon/icondark.png" alt="SKULE WebRing" style="width: 32px; height: 32px;"/>
 </a>
 <a href="https://WebRing.skule.ca/#https://muhiedin.me?nav=next" style="color: #e0e0e0; text-decoration: none; font-size: 1.5rem;">→</a>
 </div>
   <canvas id="stars"></canvas>
   <header>
-    <a href="index.html"><h1>MUHIEDIN.ME</h1></a>
+    <a href="/."><h1>MUHIEDIN.ME</h1></a>
+    
     <nav>
-      <a href="about.html">About Me</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+      <a href="/about/">About Me</a>
+      <a href="/projects/">Projects</a>
+      <a href="/contact/">Contact</a>
     </nav>
   </header>
 
   <div class="container">
-    <h2>ABOUT ME</h2>
-    <div class="cards">
-      <div class="card">My Favourite Game is Majora's Mask. I love it so much I recreated the mask In the game In real life by carving a block of wood!</div>
-      <div class="card">My Favourite Movie is Bullet Train!</div>
-      <div class="card">I really enjoy programming.</div>
-      <div class="card">I go to the university of Toronto for Electrical Engineering. </div>
-      <div class="card">I was originally in Mineral engineeing then transfered to Civil Engineering then transfered to Electrical Engineering all in the same summer.</div>
+    <h2>PROJECTS & ACCOMPLISHMENTS</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="/Images/Drone.jpg" alt="Drone">
+        <div class="project-info"><h3>Custom Drone with ESP32</h3></div>
+        <div class="project-hover">Currently 3D printing and programming a drone using ESP32 and motor drivers.</div>
+      </div>
+      <div class="project-card">
+        <img src="/Images/Aps112.png" alt="APS112">
+        <div class="project-info"><h3>APS112 Design Project</h3></div>
+        <div class="project-hover">Collaborated with UofT’s Engineering Library to design a pop-up peer support space, focusing on wellness and accessibility.</div>
+      </div>
+      <div class="project-card">
+        <img src="https://via.placeholder.com/400x200" alt="APS105">
+        <div class="project-info"><h3>APS105 Algorithm Contest</h3></div>
+        <div class="project-hover">Placed 10th in UofT’s C programming contest and received a certificate.</div>
+      </div>
+      <div class="project-card">
+        <img src="/Images/CS50X.png" alt="CS50x">
+        <div class="project-info"><h3>CS50x Certificate</h3></div>
+        <div class="project-hover">Completed Harvard’s CS50x, covering C, Python, SQL, and web development.</div>
+      </div>
+      <div class="project-card">
+        <img src="https://via.placeholder.com/400x200" alt="Unity Games">
+        <div class="project-info"><h3>Unity Game Development</h3></div>
+        <div class="project-hover">Built multiple personal projects in Unity from a young age.</div>
+      </div>
+      <div class="project-card">
+        <img src="/Images/CelestialBodySim.png" alt="Celestial Simulator">
+        <div class="project-info"><h3>
+          <a href="https://sly01bot.itch.io/celestial-body-sim">Celestial Body Simulator</a></h3></div>
+        <div class="project-hover">Created a physics-based celestial body simulator in Unity.</div>
+      </div>
+      <div class="project-card">
+        <img src="Images/Udar.png" alt="Minecraft API">
+        <div class="project-info"><h3>Minecraft Server REST API</h3></div>
+        <div class="project-hover">Built a REST API that integrates with Discord to show live Minecraft server status.</div>
+      </div>
+      <div class="project-card">
+        <img src="Images/Driving-Sim-Image.jpg" alt="FPGA Driving Sim">
+        <div class="project-info"><h3>FGPA Driving Simulator</h3></div>
+        <div class="project-hover">Using Verilog, Me and a partner built a 3D Perspective Driving Simulator.</div>
+      </div>
+      <div class="project-card">
+        <img src="Images/ECE-Upperclassman.png" alt="ECE Upperclassman">
+        <div class="project-info"><h3><a href="https://agent-app.muhiedinaomar.workers.dev/">Upperclassman ECE AI</a></h3></div>
+        <div class="project-hover" > Custom made Cloudflare Agent used to emulate an Upperclassman ECE at the University of Toronto</div>
+      </div>
     </div>
   </div>
 
