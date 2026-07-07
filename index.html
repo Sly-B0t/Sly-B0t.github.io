@@ -1,293 +1,1053 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Projects</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'VT323', monospace;
-      color: #e0e0e0;
-      background: #000;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhiedin Omar — Electrical Engineering / Embedded &amp; FPGA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F4F0E4;
+    --panel: #FBF8EF;
+    --ink: #1B1B18;
+    --muted: #8C8676;
+    --accent: #E17F2D;
+    --accent-pale: #F6D77E;
+    --border: #1B1B18;
+    --border-soft: #D8D2C0;
+    --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 
-    canvas#stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      display: block;
-    }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
 
-    header {
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 2px solid #33ff33;
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 {
-      font-family: 'VT323', monospace;
-      color: #33ff33;
-      margin: 0;
-      font-size: 26px;
-      text-shadow: 0 0 5px #33ff33;
-    }
-    nav {
-      margin-top: 0.5rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
-      transition: color 0.3s;
-      font-family: inherit;
-    }
-    nav a:hover {
-      color: #33ff33;
-    }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: rgba(20, 20, 20, 0.85);
-      border: 2px solid #33ff33;
-      border-radius: 8px;
-      box-shadow: 0 0 15px #000;
-    }
-    h2 {
-      font-family: 'VT323', monospace;
-      font-size: 16px;
-      color: #33ff33;
-      border-bottom: 1px solid #33ff33;
-      padding-bottom: 5px;
-      margin-bottom: 1rem;
-    }
+  a{ color: inherit; }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-    .project-card {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      padding: 0.5rem;
-      border-radius: 6px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-    }
-    .project-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #33ff33;
-      z-index: 2;
-    }
-    .project-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
-      filter: grayscale(100%);
-    }
-    .project-info h3 {
-      margin: 0;
-      font-size: 14px;
-      color: #fff;
-      font-family: inherit;
-    }
-    .project-hover {
-      font-size: 12px;
-      color: #ccc;
-      margin-top: 0.5rem;
-      font-family: inherit;
-    }
+  :focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 12px;
-      background: rgba(0, 0, 0, 0.8);
-      border-top: 2px solid #33ff33;
-      color: #666;
-      font-family: inherit;
-    }
-    a {
-      color: #33ff33;
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  .wrap{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    border-bottom: 1.5px solid var(--border);
+    padding: 22px 0 0;
+  }
+  .topbar-inner{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 18px;
+  }
+  .brand{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  .brand span{ color: var(--accent); }
+  .contact-line{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .contact-line a:hover{ color: var(--ink); }
+
+  /* ---------- Tabs ---------- */
+  .tabs{
+    display: flex;
+    gap: 36px;
+  }
+  .tab{
+    text-decoration: none;
+    padding: 12px 0 14px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    display: block;
+  }
+  .tab.active{ border-bottom-color: var(--accent); }
+  .tab-title{
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .tab-sub{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  section{ padding: 56px 0; scroll-margin-top: 24px; }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .section-label{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .panel{
+    border: 1.5px solid var(--border);
+    background: var(--panel);
+    padding: 26px;
+  }
+  .field{ margin-bottom: 18px; }
+  .field label{
+    display: block;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .field .val{
+    border: 1.5px solid var(--border);
+    padding: 10px 12px;
+    font-family: var(--mono);
+    font-size: 15px;
+    background: #fff;
+  }
+  .chips-row{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .chip-link{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    border: 1.5px solid var(--border);
+    padding: 7px 12px;
+    text-decoration: none;
+    background: #fff;
+    display: inline-block;
+  }
+  .chip-link:hover{ background: var(--accent-pale); }
+
+  .hero-result{
+    border: 1.5px solid var(--border);
+    border-left: 5px solid var(--accent);
+    background: var(--panel);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+  }
+  .result-eyebrow{
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .result-title{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .result-meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .result-meta .tag{
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .schematic{ margin-top: auto; }
+  .schematic svg{ width: 100%; height: auto; display: block; }
+
+  .progress-track{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 4px 0 30px;
+  }
+  .progress-track::before{
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    height: 2px;
+    background: var(--border-soft);
+  }
+  .progress-track::after{
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc((100% - 10px) * 0.667);
+    height: 2px;
+    background: var(--accent);
+  }
+  .progress-step{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .progress-step .dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border-soft);
+    margin-bottom: 9px;
+  }
+  .progress-step.done .dot,
+  .progress-step.current .dot{
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .progress-step.current .dot{
+    box-shadow: 0 0 0 4px rgba(225, 127, 45, 0.22);
+  }
+  .progress-step.done span:last-child,
+  .progress-step.current span:last-child{ color: var(--ink); font-weight: 600; }
+  .progress-step:not(.done):not(.current) span:last-child{ color: var(--muted); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .skill-card{
+    border: 1.5px solid var(--border);
+    padding: 20px;
+  }
+  .skill-card h3{
+    font-family: var(--mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .chip-set{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    border: 1.5px solid var(--border);
+    padding: 6px 11px;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+  .chip.active{
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .chip:hover:not(.active){ background: var(--accent-pale); }
+
+  /* ---------- Project filter ---------- */
+  .filter-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .filter-row .filter-label{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-right: 6px;
+  }
+
+  .projects-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .project-card{
+    border: 1.5px solid var(--border);
+    background: var(--panel);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.15s ease;
+    cursor: pointer;
+  }
+  .project-card.hidden{ display: none; }
+  .project-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .project-title{
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 16.5px;
+  }
+  .project-date-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .project-date{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .toggle-icon{
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    border: 1.5px solid var(--border);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    background: #fff;
+  }
+  .project-card.expanded .toggle-icon{ transform: rotate(45deg); }
+  .details{
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+  }
+  .project-card.expanded .details{
+    opacity: 1;
+    margin-top: 2px;
+  }
+  .project-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .tag{
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--accent-pale);
+    border: 1.5px solid var(--border);
+    padding: 3px 8px;
+  }
+  .project-card ul{
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+  }
+  .project-card li{ margin-bottom: 8px; }
+  .project-card li:last-child{ margin-bottom: 0; }
+  .project-card strong{ color: var(--accent); font-weight: 600; }
+
+  /* ---------- Experience ---------- */
+  .exp-item{
+    border-top: 1.5px solid var(--border-soft);
+    padding: 20px 0;
+  }
+  .exp-item:first-child{ border-top: none; }
+  .exp-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .exp-role{ font-family: var(--mono); font-weight: 600; font-size: 15px; }
+  .exp-org{ font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .exp-date{ font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .exp-item ul{ margin: 0; padding-left: 18px; font-size: 14px; }
+  .exp-item li{ margin-bottom: 6px; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top: 1.5px solid var(--border);
+    padding: 28px 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer .contact-line{ margin: 0; }
+  .foot-note{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 760px){
+    .hero{ grid-template-columns: 1fr; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    .projects-grid{ grid-template-columns: 1fr; }
+    .tabs{ gap: 22px; }
+    .result-title{ font-size: 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .project-card{ transition: none; }
+    .reveal{ opacity: 1; transform: none; transition: none; }
+  }
+</style>
 </head>
 <body>
 
-  <div style="display: flex; align-items: center; gap: 15px; background-color: rgba(255, 255, 255, 0); padding: 15px 25px; border-radius: 8px; position: absolute;">
-    <a href="https://WebRing.skule.ca/#https://muhiedin.me?nav=prev" style="color: #e0e0e0; text-decoration: none; font-size: 1.5rem;">←</a>
-  <a href="https://WebRing.skule.ca/#https://muhiedin.me target="_blank">
-  <img src="/icon/icondark.png" alt="SKULE WebRing" style="width: 32px; height: 32px;"/>
-  </a>
-  <a href="https://WebRing.skule.ca/#https://muhiedin.me?nav=next" style="color: #e0e0e0; text-decoration: none; font-size: 1.5rem;">→</a>
-  </div>
-
-  <canvas id="stars"></canvas>
-
-  <header>
-    <a href="/."><h1>MUHIEDIN.ME</h1></a>
-    
-    <nav>
-      <a href="/about/">About Me</a>
-      <a href="/projects/">Projects</a>
-      <a href="/contact/">Contact</a>
-    </nav>
-  </header>
-
-  <div class="container" id="home">
-    <h2>ABOUT ME</h2>
-    <p>Hi, I’m Muhiedin! I love building things — from code to hardware to art. Here’s a snapshot of my journey so far.</p>
-  </div>
-  
-  <div class="container" id="projects">
-    <h2>PROJECTS & ACCOMPLISHMENTS</h2>
-    <div class="projects-grid">
-      <!-- All project cards already here -->
-      <div class="project-card">
-        <div class="project-info"><h3>Custom Drone with ESP32</h3></div>
-        <div class="project-hover">Currently 3D printing and programming a drone using ESP32 and motor drivers.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>APS112 Design Project</h3></div>
-        <div class="project-hover">Collaborated with UofT’s Engineering Library to design a pop-up peer support space, focusing on wellness and accessibility.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>APS105 Algorithm Contest</h3></div>
-        <div class="project-hover">Placed 10th in UofT’s C programming contest and received a certificate.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>CS50x Certificate</h3></div>
-        <div class="project-hover">Completed Harvard’s CS50x, covering C, Python, SQL, and web development.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>Unity Game Development</h3></div>
-        <div class="project-hover">Built multiple personal projects in Unity from a young age.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>Celestial Body Simulator</h3></div>
-        <div class="project-hover">Created a physics-based celestial body simulator in Unity.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>Minecraft Server REST API</h3></div>
-        <div class="project-hover">Built a REST API that integrates with Discord to show live Minecraft server status.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>FPGA Driving Sim</h3></div>
-        <div class="project-hover">Using Verilog, Me and a partner built a 3D Perspective Driving Simulator.</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>Upperclassman ECE AI</h3></div>
-        <div class="project-hover" > Custom made Cloudflare Agent used to emulate an Upperclassman ECE at the University of Toronto</div>
-      </div>
-      <div class="project-card">
-        <div class="project-info"><h3>Custom 3D Renderer</h3></div>
-        <div class="project-hover" >Using C++ and Windows API, I created a 3D renderer that can render custom obj objects in wireframe mode.</div>
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-inner">
+      <div class="brand">muhiedin<span>.me</span></div>
+      <div class="contact-line">
+        <a href="mailto:muhiedin.omar@mail.utoronto.ca">muhiedin.omar@mail.utoronto.ca</a>
+        <a href="https://github.com/Sly-B0t" target="_blank" rel="noopener">github.com/Sly-B0t</a>
       </div>
     </div>
+    <nav class="tabs">
+      <div class="tab active" data-target="overview" role="button" tabindex="0">
+        <div class="tab-title">Overview</div>
+        <div class="tab-sub">Who I am</div>
+      </div>
+      <div class="tab" data-target="projects" role="button" tabindex="0">
+        <div class="tab-title">Projects</div>
+        <div class="tab-sub">What I've built</div>
+      </div>
+      <div class="tab" data-target="experience" role="button" tabindex="0">
+        <div class="tab-title">Experience</div>
+        <div class="tab-sub">Where I've worked</div>
+      </div>
+    </nav>
   </div>
+</div>
 
-  <div class="container" id="contact">
-    <h2>CONTACT</h2>
-    <p>Email me at: <a href="mailto:muhiedin.omar@mail.utoronto.ca">muhiedin.omar@mail.utoronto.ca</a></p>
-  </div>
+<div class="wrap">
+
+  <section id="overview" class="reveal">
+    <div class="hero">
+      <div class="panel">
+        <div class="field">
+          <label>Name</label>
+          <div class="val">Muhiedin Omar</div>
+        </div>
+        <div class="field">
+          <label>Program</label>
+          <div class="val">BASc Electrical Engineering + Robotics &amp; Mechatronics Minor</div>
+        </div>
+        <div class="field">
+          <label>School / Term</label>
+          <div class="val">University of Toronto — 2024–2028 + PEY</div>
+        </div>
+        <div class="field" style="margin-bottom: 4px;">
+          <label>Focus</label>
+          <div class="chips-row">
+            <span class="chip-link">Embedded Systems</span>
+            <span class="chip-link">FPGA / RTL</span>
+            <span class="chip-link">Robotics</span>
+            <span class="chip-link">PCB Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-result">
+        <div class="result-eyebrow">Designed. Now assembling &amp; flight testing</div>
+        <div class="result-title">ESP32-Based Flight Controller</div>
+        <div class="result-meta">
+          <span class="tag">RTOS</span>
+          <span class="tag">PID Control</span>
+          <span class="tag">Custom PCB</span>
+          <span class="tag">I2C IMU</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-step done">
+            <span class="dot"></span>
+            <span>Design</span>
+          </div>
+          <div class="progress-step done">
+            <span class="dot"></span>
+            <span>PCB Fab</span>
+          </div>
+          <div class="progress-step current">
+            <span class="dot"></span>
+            <span>Assembly</span>
+          </div>
+          <div class="progress-step">
+            <span class="dot"></span>
+            <span>Flight Test</span>
+          </div>
+        </div>
+
+        <div class="schematic">
+          <svg viewBox="0 0 480 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Block diagram: battery and signal path through ESC, linear regulator, ESP32, and IMU to the motors">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#1B1B18"/>
+              </marker>
+              <marker id="arrow-power" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 z" fill="#E17F2D"/>
+              </marker>
+            </defs>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#1B1B18">
+
+              <!-- Top row: power delivery to the ESC, then drive to the motors -->
+              <rect x="8" y="18" width="74" height="46" fill="none" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="45" y="40" text-anchor="middle">Battery</text>
+              <text x="45" y="54" text-anchor="middle" font-size="9" fill="#8C8676">3S LiPo</text>
+
+              <line x1="82" y1="41" x2="158" y2="41" stroke="#E17F2D" stroke-width="1.5" marker-end="url(#arrow-power)"/>
+              <text x="120" y="34" text-anchor="middle" font-size="8.5" fill="#E17F2D">PWR</text>
+
+              <rect x="160" y="18" width="90" height="46" fill="none" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="205" y="40" text-anchor="middle">ESC</text>
+              <text x="205" y="54" text-anchor="middle" font-size="9" fill="#8C8676">PWM in</text>
+
+              <line x1="250" y1="41" x2="398" y2="41" stroke="#1B1B18" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <text x="325" y="34" text-anchor="middle" font-size="8.5" fill="#8C8676">DRIVE</text>
+
+              <rect x="400" y="18" width="70" height="46" fill="none" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="435" y="40" text-anchor="middle">Motor</text>
+              <text x="435" y="54" text-anchor="middle" font-size="9" fill="#8C8676">x4</text>
+
+              <!-- ESC feeds a linear regulator for logic-level power -->
+              <line x1="205" y1="64" x2="205" y2="166" stroke="#E17F2D" stroke-width="1.5" marker-end="url(#arrow-power)"/>
+              <text x="217" y="115" font-size="8.5" fill="#E17F2D">PWR</text>
+
+              <!-- Power bus: regulator fans out to ESP32 and IMU -->
+              <line x1="230" y1="166" x2="230" y2="146" stroke="#E17F2D" stroke-width="1.5"/>
+              <line x1="230" y1="146" x2="435" y2="146" stroke="#E17F2D" stroke-width="1.5"/>
+              <line x1="340" y1="146" x2="340" y2="166" stroke="#E17F2D" stroke-width="1.5" marker-end="url(#arrow-power)"/>
+              <line x1="435" y1="146" x2="435" y2="166" stroke="#E17F2D" stroke-width="1.5" marker-end="url(#arrow-power)"/>
+
+              <!-- Signal bus: ESP32 sends PWM control up to the ESC -->
+              <line x1="340" y1="166" x2="340" y2="95" stroke="#1B1B18" stroke-width="1.5"/>
+              <line x1="340" y1="95" x2="205" y2="95" stroke="#1B1B18" stroke-width="1.5"/>
+              <line x1="205" y1="95" x2="205" y2="66" stroke="#1B1B18" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <text x="272" y="88" text-anchor="middle" font-size="8.5" fill="#8C8676">PWM</text>
+
+              <!-- Bottom row: regulator, ESP32, IMU -->
+              <rect x="160" y="166" width="100" height="46" fill="none" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="210" y="188" text-anchor="middle">Lin Reg</text>
+              <text x="210" y="202" text-anchor="middle" font-size="9" fill="#8C8676">5V &#8594; 3.3V</text>
+
+              <rect x="300" y="166" width="80" height="46" fill="none" stroke="#E17F2D" stroke-width="1.5"/>
+              <text x="340" y="188" text-anchor="middle">ESP32</text>
+              <text x="340" y="202" text-anchor="middle" font-size="9" fill="#8C8676">RTOS+PID</text>
+
+              <line x1="400" y1="189" x2="382" y2="189" stroke="#1B1B18" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <text x="391" y="182" text-anchor="middle" font-size="8.5" fill="#8C8676">I2C</text>
+
+              <rect x="400" y="166" width="70" height="46" fill="none" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="435" y="188" text-anchor="middle">IMU</text>
+              <text x="435" y="202" text-anchor="middle" font-size="9" fill="#8C8676">6-axis</text>
+
+              <!-- Legend -->
+              <line x1="8" y1="232" x2="30" y2="232" stroke="#E17F2D" stroke-width="1.5"/>
+              <text x="36" y="235" font-size="9" fill="#8C8676">Power</text>
+              <line x1="90" y1="232" x2="112" y2="232" stroke="#1B1B18" stroke-width="1.5"/>
+              <text x="118" y="235" font-size="9" fill="#8C8676">Signal</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="chip-set">
+          <span class="chip">C/C++</span>
+          <span class="chip">MATLAB</span>
+          <span class="chip">Java</span>
+          <span class="chip">Python</span>
+          <span class="chip">RISC-V Assembly</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Hardware &amp; Embedded</h3>
+        <div class="chip-set">
+          <span class="chip" data-filter="embedded">FPGA (Verilog)</span>
+          <span class="chip" data-filter="embedded">ESP32</span>
+          <span class="chip">PWM</span>
+          <span class="chip">Interrupts</span>
+          <span class="chip" data-filter="embedded">Memory Mapped I/O</span>
+          <span class="chip">I2C</span>
+          <span class="chip">I2S</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Tools</h3>
+        <div class="chip-set">
+          <span class="chip">Quartus Prime Lite</span>
+          <span class="chip">LTSpice</span>
+          <span class="chip">Git</span>
+          <span class="chip">Fusion 360</span>
+          <span class="chip" data-filter="embedded">KiCad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <p class="section-label">Projects</p>
+    <div class="filter-row">
+      <span class="filter-label">Filter:</span>
+      <span class="chip active" data-tag="all">All</span>
+      <span class="chip" data-tag="embedded">Embedded</span>
+      <span class="chip" data-tag="cpp">C++</span>
+      <span class="chip" data-tag="unity">Unity</span>
+      <span class="chip" data-tag="ai">AI</span>
+      <span class="chip" data-tag="web">Web/API</span>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <div class="project-card" data-tags="embedded">
+        <div class="project-head">
+          <div class="project-title">ESP32-Based Flight Controller</div>
+          <div class="project-date-row">
+          <div class="project-date">Jan 2026 – Present</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Embedded C++</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">RTOS</span>
+          <span class="tag">I2C</span>
+          <span class="tag">KiCad</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Firmware: PWM ESC control, Bluetooth gamepad input, <strong>inner/outer-loop PID stabilization</strong>, RTOS-based control loop for real-time IMU feedback and motor output updates</li>
+          <li>Hardware: designed a custom PCB motherboard connecting the ESP32 dev board with ESC outputs, I2C sensors, power, and peripheral headers</li>
+          <li>Designed a fully custom KiCad motherboard integrating an <strong>ESP32-WROOM-32</strong> module, peripheral ICs, and modular daughterboard expansion</li>
+          <li>Now assembling: soldering the PCB, mounting components, and 3D printing the frame ahead of flight testing</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="embedded">
+        <div class="project-head">
+          <div class="project-title">ESP32 Custom PCB Walkie-Talkie</div>
+          <div class="project-date-row">
+          <div class="project-date">Feb – Apr 2026</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">LTSpice</span>
+          <span class="tag">I2S</span>
+          <span class="tag">ESP32</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Designed and prototyped an analog mic pre-amplifier PCB with roughly <strong>40× gain</strong> and 1.65V biasing, with diode clamping for voltage protection and filtering to improve ESP32 ADC signal quality</li>
+          <li>Developed a wireless walkie-talkie, currently streaming <strong>8 kHz audio</strong> over WiFi using ESP32, I2S, and digital audio modules</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="embedded">
+        <div class="project-head">
+          <div class="project-title">16-Bit Processor &amp; Assembler</div>
+          <div class="project-date-row">
+          <div class="project-date">May 2026</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Verilog</span>
+          <span class="tag">C++</span>
+          <span class="tag">Assembly</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Implemented a custom <strong>50 MHz 16-bit CPU</strong> in Verilog with ALU, register file, program counter, control logic, and memory interface</li>
+          <li>Built a C++ assembler for a custom <strong>16-opcode ISA</strong>, translating assembly into executable machine code</li>
+          <li>Validated the CPU via simulation across arithmetic, branch, and load/store programs — running Fibonacci out to <strong>24 values before overflow</strong></li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="embedded">
+        <div class="project-head">
+          <div class="project-title">FPGA-Based 3D Software Renderer</div>
+          <div class="project-date-row">
+          <div class="project-date">Mar 2026</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">C</span>
+          <span class="tag">NIOS V</span>
+          <span class="tag">FPGA</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Rendered <strong>100+ faces at ~10 fps</strong> on a 100 MHz NIOS V soft-core, outputting to VGA via memory-mapped I/O</li>
+          <li>Implemented Painter's Algorithm for depth-sorted rendering — correct occlusion without a z-buffer</li>
+          <li>Built a full rasterization pipeline in C: OBJ parsing, perspective projection, real-time camera transforms on FPGA</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="embedded">
+        <div class="project-head">
+          <div class="project-title">FPGA Driving Simulator (Mode 7 Style)</div>
+          <div class="project-date-row">
+          <div class="project-date">2025</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Verilog</span>
+          <span class="tag">VGA</span>
+          <span class="tag">Fixed-Point Math</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Built a hardware-accelerated Mode 7-style driving simulator on a DE1-SoC FPGA — all graphics transformations done in fully synchronous Verilog RTL, with a lab partner</li>
+          <li>Designed <strong>LUT-based sine/cosine tables</strong> for cycle-accurate camera rotation, avoiding real-time trig computation in RTL</li>
+          <li>Implemented fixed-point perspective projection for real-time ground distortion, procedural checkerboard world via tile indexing, and a pixel-level compositor blending background, checkerboard, and sprite per clock cycle</li>
+          <li>Built a full 160×120 VGA timing pipeline with switch-controlled 2D/3D render modes</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="cpp">
+        <div class="project-head">
+          <div class="project-title">Custom 3D Renderer (Windows API)</div>
+          <div class="project-date-row">
+          <div class="project-date">2025</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">C++</span>
+          <span class="tag">Windows API</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Built a 3D renderer in C++ using the Windows API, capable of loading and rendering custom OBJ objects in wireframe mode</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="ai web">
+        <div class="project-head">
+          <div class="project-title">Upperclassman ECE AI</div>
+          <div class="project-date-row">
+          <div class="project-date">2025</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Cloudflare Agents</span>
+          <span class="tag">AI</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Built a custom Cloudflare Agent that emulates an upperclassman ECE student at the University of Toronto, answering questions in that voice</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="web">
+        <div class="project-head">
+          <div class="project-title">Minecraft Server REST API</div>
+          <div class="project-date-row">
+          <div class="project-date">Personal project</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">REST API</span>
+          <span class="tag">Discord</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Built a REST API integrating with Discord to show live Minecraft server status</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="unity">
+        <div class="project-head">
+          <div class="project-title">Celestial Body Simulator</div>
+          <div class="project-date-row">
+          <div class="project-date">Personal project</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">Physics Sim</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Created a physics-based celestial body simulator in Unity, modeling gravitational interaction between bodies</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="unity">
+        <div class="project-head">
+          <div class="project-title">Unity Game Development</div>
+          <div class="project-date-row">
+          <div class="project-date">Ongoing since youth</div>
+          <span class="toggle-icon">+</span>
+        </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+        </div>
+        <div class="details">
+<ul>
+          <li>Built multiple personal game projects in Unity, starting from a young age</li>
+        </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience" class="reveal">
+    <p class="section-label">Experience</p>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div>
+          <span class="exp-role">Computer Hardware Technician</span> —
+          <span class="exp-org">Computech Solutions</span>
+        </div>
+        <div class="exp-date">Jan 2024 – Jun 2026</div>
+      </div>
+      <ul>
+        <li>Diagnosed and resolved customer computer issues: Windows installs, driver conflicts, hardware failures, and laptop component replacements (motherboards, screens, keyboards, batteries)</li>
+        <li>Developed a Microsoft Access tracking database for customer repair cases to ensure timely device turnaround</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div>
+          <span class="exp-role">Communications Liaison</span> —
+          <span class="exp-org">Engineering Strategies and Practice, University of Toronto</span>
+        </div>
+        <div class="exp-date">Jan – Apr 2025</div>
+      </div>
+      <ul>
+        <li>Served as liaison between client, engineering manager, and project team to ensure clear communication between parties</li>
+        <li>Coordinated communication and delivered a final design exceeding client requirements</li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Muhiedin Omar</p>
+    <div class="contact-line">
+      <a href="mailto:muhiedin.omar@mail.utoronto.ca">muhiedin.omar@mail.utoronto.ca</a>
+      <a href="https://github.com/Sly-B0t" target="_blank" rel="noopener">github.com/Sly-B0t</a>
+    </div>
+    <div class="foot-note">Built with Verilog-grade attention to detail.</div>
   </footer>
 
-  <script>
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    let shootingStars = [];
+</div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < 200; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2,
-          speed: 0.05 + Math.random() * 0.5
-        });
+<script>
+  // Fade-in reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
       }
-    }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
 
-    function createShootingStar() {
-      shootingStars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height / 2,
-        length: 200,
-        speed: 10,
-        size: 2,
-        opacity: 1
+  const tabs = document.querySelectorAll('.tab');
+  const sections = ['overview','projects','experience'].map(id => document.getElementById(id));
+
+  function goToTab(tab){
+    const id = tab.dataset.target;
+    const target = document.getElementById(id);
+    if (target){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => goToTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        goToTab(tab);
+      }
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    let current = sections[0].id;
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 120) current = sec.id;
+    });
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.target === current);
+    });
+  });
+
+  // Project card expand/collapse
+  const projectCards = Array.from(document.querySelectorAll('.project-card'));
+
+  projectCards.forEach((card, i) => {
+    const details = card.querySelector('.details');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+    card._details = details;
+  });
+
+  function setCardState(card, expand){
+    const details = card._details;
+    const isExpanded = card.classList.contains('expanded');
+    if (expand === isExpanded) return;
+
+    if (!expand){
+      details.style.maxHeight = details.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        details.style.maxHeight = '0px';
       });
+      card.classList.remove('expanded');
+      card.setAttribute('aria-expanded', 'false');
+    } else {
+      card.classList.add('expanded');
+      card.setAttribute('aria-expanded', 'true');
+      details.style.maxHeight = details.scrollHeight + 'px';
     }
+  }
 
-    function drawShootingStars() {
-      for (let i = 0; i < shootingStars.length; i++) {
-        const star = shootingStars[i];
-        ctx.beginPath();
-        const grad = ctx.createLinearGradient(star.x, star.y, star.x - star.length, star.y + star.length);
-        grad.addColorStop(0, `rgba(255,255,255,${star.opacity})`);
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = star.size;
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.length, star.y + star.length);
-        ctx.stroke();
-        star.x += -star.speed;
-        star.y += star.speed;
-        star.opacity -= 0.01;
-        if (star.opacity <= 0) {
-          shootingStars.splice(i, 1);
-          i--;
-        }
-      }
+  function getRowMate(card){
+    // Only pair with a mate that's currently visible (not filtered out),
+    // so a hidden card never gets silently expanded in the background.
+    const visible = projectCards.filter(c => !c.classList.contains('hidden'));
+    const idx = visible.indexOf(card);
+    if (idx === -1) return null;
+    const mateIdx = idx % 2 === 0 ? idx + 1 : idx - 1;
+    return visible[mateIdx] || null;
+  }
+
+  function toggleCard(card){
+    const expand = !card.classList.contains('expanded');
+    setCardState(card, expand);
+    const mate = getRowMate(card);
+    if (mate){
+      setCardState(mate, expand);
     }
+  }
 
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'white';
-      for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
+  projectCards.forEach(card => {
+    const details = card._details;
+    card.addEventListener('click', () => toggleCard(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggleCard(card);
       }
-
-      if (Math.random() < 0.005) {
-        createShootingStar();
+    });
+    // Clean up inline max-height after expand transition so content reflow
+    // (e.g. window resize) doesn't get stuck at a stale pixel value.
+    details.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'max-height' && card.classList.contains('expanded')){
+        details.style.maxHeight = 'none';
       }
+    });
+  });
 
-      drawShootingStars();
-      requestAnimationFrame(animateStars);
-    }
+  // Project filter chips
+  const filterChips = document.querySelectorAll('.filter-row .chip');
+  const cards = document.querySelectorAll('.project-card');
 
-    initStars();
-    animateStars();
-  </script>
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const tag = chip.dataset.tag;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        card.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+      });
+      // Row pairings shift when the filter changes, so collapse everything
+      // to avoid two unrelated cards ending up mismatched in height.
+      projectCards.forEach(card => setCardState(card, false));
+    });
+  });
+
+  // Skill chips with data-filter also drive the same project filter, for cohesion
+  document.querySelectorAll('.skill-card .chip[data-filter]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filterTag = chip.dataset.filter;
+      const target = document.querySelector(`.filter-row .chip[data-tag="${filterTag}"]`);
+      if (target){
+        target.click();
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
